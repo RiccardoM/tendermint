@@ -174,6 +174,12 @@ func GenFilePV(keyFilePath, stateFilePath string) *FilePV {
 	return NewFilePV(ed25519.GenPrivKey(), keyFilePath, stateFilePath)
 }
 
+// RecoverFilePV recovers a validator from the given private key
+// and sets the filePaths, but does not call Save().
+func RecoverFilePV(privKey crypto.PrivKey, keyFilePath, stateFilePath string) *FilePV {
+	return NewFilePV(privKey, keyFilePath, stateFilePath)
+}
+
 // LoadFilePV loads a FilePV from the filePaths.  The FilePV handles double
 // signing prevention by persisting data to the stateFilePath.  If either file path
 // does not exist, the program will exit.
